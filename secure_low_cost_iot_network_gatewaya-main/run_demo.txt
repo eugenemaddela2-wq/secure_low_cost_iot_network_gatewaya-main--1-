@@ -1,0 +1,20 @@
+DEMO MODE
+
+Terminal 1:
+  python mock_cloud.py
+
+Set in .env:
+  CLOUD_ENDPOINT=http://127.0.0.1:5001/cloud/ingest
+
+Terminal 2:
+  python app.py
+
+Terminal 3:
+  python test_sender.py
+
+Try failure/buffering demo:
+1. Stop mock_cloud.py
+2. Run test_sender.py again -> response should say status=buffered
+3. Start mock_cloud.py again
+4. POST http://127.0.0.1:5000/api/retry or wait for automatic retry
+5. Check http://127.0.0.1:5000/api/status and /api/records
